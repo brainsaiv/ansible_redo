@@ -3,17 +3,13 @@
   become: true
   tasks:
 
-  - name: update repository index
+  
+  - name: Install httpd and PHP
     ansible.builtin.dnf:
-      update_cache: yes  
-
-  - name: Install Apache2 (httpd) package
-    ansible.builtin.dnf:
-      name: httpd
+      name: 
+        - httpd
+        - php
       state: present
+      update_cache: yes
+    
 
-
-  - name: Install support for PHP
-    ansible.builtin.dnf:
-      name: php
-      state: present
