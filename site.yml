@@ -1,11 +1,12 @@
 ---
 - hosts: all
   become: true
-  pre_tasks:
+  tasks:
 
   - name: Install updates for fedora
     ansible.builtin.dnf:
-    update_cache: yes
+      update_cache: yes
+    when: ansible_distribution == "Fedora"
 
 
 - hosts: db_servers
@@ -16,5 +17,7 @@
     ansible.builtin.dnf:
       name: mariadb
       state: present
+    when: ansible_distribution == "Fedora"
+    tags: db, fedora
 
 
