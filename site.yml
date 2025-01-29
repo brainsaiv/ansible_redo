@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Install updates for fedora
+    ansible.builtin.dnf:
+    update_cache: yes
+
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+  - name: Install mariadb package on db_servers
+    ansible.builtin.dnf:
+      name: mariadb
+      state: present
+
+
